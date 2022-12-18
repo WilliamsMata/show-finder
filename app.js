@@ -83,3 +83,29 @@ d.addEventListener("keyup", async (e) => {
     mostrarResultados(data);
   }
 });
+
+d.addEventListener("DOMContentLoaded", async (e) => {
+  const showList = [
+    "pokemon",
+    "dark",
+    "breaking bad",
+    "game of thrones",
+    "rick and morty",
+    "attack on titan",
+    "house of the dragon",
+    "1899",
+    "Steins;Gate",
+    "vikings",
+  ];
+
+  let randomShow = showList[Math.floor(Math.random() * showList.length)];
+  $searcher.value = randomShow;
+
+  let input = $searcher.value.replaceAll(" ", "+");
+
+  const url = `https://api.tvmaze.com/search/shows?q=${input}`;
+
+  const data = await tvMazeApi(url);
+
+  mostrarResultados(data);
+});
