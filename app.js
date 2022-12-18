@@ -71,36 +71,7 @@ const mostrarResultados = (data) => {
   }
 };
 
-d.addEventListener("keyup", async (e) => {
-  //if (e.key === "Enter")
-  if (e.target.matches(".search")) {
-    let input = $searcher.value.replaceAll(" ", "+");
-
-    const url = `https://api.tvmaze.com/search/shows?q=${input}`;
-
-    const data = await tvMazeApi(url);
-
-    mostrarResultados(data);
-  }
-});
-
-d.addEventListener("DOMContentLoaded", async (e) => {
-  const showList = [
-    "pokemon",
-    "dark",
-    "breaking bad",
-    "game of thrones",
-    "rick and morty",
-    "attack on titan",
-    "house of the dragon",
-    "1899",
-    "Steins;Gate",
-    "vikings",
-  ];
-
-  let randomShow = showList[Math.floor(Math.random() * showList.length)];
-  $searcher.value = randomShow;
-
+const search = async () => {
   let input = $searcher.value.replaceAll(" ", "+");
 
   const url = `https://api.tvmaze.com/search/shows?q=${input}`;
@@ -108,4 +79,31 @@ d.addEventListener("DOMContentLoaded", async (e) => {
   const data = await tvMazeApi(url);
 
   mostrarResultados(data);
+};
+
+d.addEventListener("keyup", async (e) => {
+  //if (e.key === "Enter")
+  if (e.target.matches(".search")) {
+    await search();
+  }
+});
+
+const showList = [
+  "pokemon",
+  "dark",
+  "breaking bad",
+  "game of thrones",
+  "rick and morty",
+  "attack on titan",
+  "house of the dragon",
+  "1899",
+  "Steins;Gate",
+  "vikings",
+];
+
+d.addEventListener("DOMContentLoaded", async (e) => {
+  let randomShow = showList[Math.floor(Math.random() * showList.length)];
+  $searcher.value = randomShow;
+
+  await search();
 });
