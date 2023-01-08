@@ -35,6 +35,14 @@ img {
   height: auto;
 }
 
+.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
 .search {
   margin-top: 1rem;
   width: 20rem;
@@ -137,4 +145,9 @@ main {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.not-found-img {
+  width: 30rem;
+  height: auto;
 }

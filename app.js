@@ -25,6 +25,17 @@ const tvMazeApi = async (url) => {
 const mostrarResultados = (data) => {
   $main.innerHTML = "";
 
+  console.log(data);
+
+  if (data.length === 0) {
+    $main.innerHTML = `
+      <div class="not-found">
+        <h2>Not Found</h2>
+        <img src="./undraw_notify_re_65on.svg" alt="not found" class="not-found-img">
+      </div>
+    `;
+  }
+
   for (const obj of data) {
     const show = obj.show;
 
