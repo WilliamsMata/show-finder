@@ -43,6 +43,11 @@ img {
   gap: 1rem;
 }
 
+.not-found-img {
+  width: min(100%, 30rem);
+  height: auto;
+}
+
 .search {
   margin-top: 1rem;
   width: 20rem;
@@ -145,9 +150,4 @@ main {
   100% {
     transform: rotate(360deg);
   }
-}
-
-.not-found-img {
-  width: 30rem;
-  height: auto;
 }
