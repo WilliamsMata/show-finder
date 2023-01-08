@@ -7,12 +7,13 @@ const $searcher = d.querySelector(".search"),
 const tvMazeApi = async (url) => {
   try {
     //conectamos con api
-    let res = await fetch(url),
-      //obtenemos json
-      json = await res.json();
+    const res = await fetch(url);
 
     //Manejamos los errores y los retornamos en un objeto
     if (!res.ok) throw { status: res.status, statusText: res.statusText };
+
+    //obtenemos json
+    const json = await res.json();
 
     // retornamos el obj de la api
     return json;
@@ -33,13 +34,14 @@ const mostrarResultados = (data) => {
     });
 
     const year = show.premiered.split("-")[0];
+    const rating = show.rating.average ? show.rating.average + "/10" : "?/10";
 
     const showCard = `
       <h2>${show.name}</h2>
       <div class="show-flex">
         <div class="show-info">
-          <div class="rating">
-            <span><b>Rating:</b></span> <span>${show.rating.average}</span>
+          <div class="year">
+            <span><b>Year: </b></span><span>${year}</span>
           </div>
           <div class="genres">
             <h3>Genres:</h3>
@@ -47,8 +49,8 @@ const mostrarResultados = (data) => {
               ${showGenres}
             </ul>
           </div>
-          <div class="year">
-            <span><b>Year: </b></span><span>${year}</span>
+          <div class="rating">
+            <span><b>Rating:</b></span> <span>${rating}</span>
           </div>
         </div>
         <div class="show-img">
@@ -82,10 +84,10 @@ const search = async () => {
 };
 
 d.addEventListener("keyup", async (e) => {
-  //if (e.key === "Enter")
-  if (e.target.matches(".search")) {
-    await search();
-  }
+  if (e.key === "Enter")
+    if (e.target.matches(".search")) {
+      await search();
+    }
 });
 
 const showList = [
