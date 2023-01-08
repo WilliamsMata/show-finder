@@ -86,6 +86,8 @@ const search = async () => {
 d.addEventListener("keyup", async (e) => {
   if (e.key === "Enter")
     if (e.target.matches(".search")) {
+      $main.innerHTML =
+        "<div class='lds-ring'><div></div><div></div><div></div><div></div></div>";
       await search();
     }
 });
@@ -107,5 +109,7 @@ d.addEventListener("DOMContentLoaded", async (e) => {
   let randomShow = showList[Math.floor(Math.random() * showList.length)];
   $searcher.value = randomShow;
 
+  $main.innerHTML =
+    "<div class='lds-ring'><div></div><div></div><div></div><div></div></div>";
   await search();
 });
